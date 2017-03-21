@@ -1,4 +1,4 @@
-/** Exercises */
+/* Exercises */
 def nameOrNA(name: String): String = {
   name match {
     case "" => "n/a"
