@@ -55,3 +55,38 @@ def max(a: Int, b: Int, c: Int) = {
 };
 
 println(max(1, 2, 4));
+
+// Calling functions with named parameters
+def greet(prefix: String, name: String) = s"$prefix $name";
+
+val g1 = greet("Ms.", "Brown");
+val g2 = greet(name = "Brown", prefix = "Mr.");
+
+// Parameters with default values
+def greet2(name: String, prefix: String = "") = s"$prefix$name";
+val g3 = greet(name = "Paul");
+val g4 = greet("Ola");
+
+// Vararg Parameters
+def sum(items: Int*): Int = {
+  var total = 0;
+
+  for (i <- items) total += i;
+  total;
+};
+
+println(sum(10, 20, 30));
+
+// Parameter groups
+def max(x: Int)(y: Int) = if (x > y) x else y; // same as max(x: Int, y: Int)
+val larger = max(20)(30);                      // same as max(20, 30)
+
+// Type Parameters
+/** def funcName[typeName](paramName: tyepName): typeName... */
+def identity[A](input: A): A = input;
+val s: String = identity[String]("hello");
+val d: Double = identity[Double](2.717);
+val s2 = identity("hello");
+vas d2 = identity(2.717);
+
+  
