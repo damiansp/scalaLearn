@@ -54,3 +54,45 @@ println(safeStringOp("remba", _.reverse));
 
 def combination(x: String, y: String, f: (String, String) => String) = f(x, y);
 println(combination("Pizza Hut ", "Taco Bell ", _ + _));
+
+
+
+// Partially Applied Functions and Currying
+def isFactorOf(x: Int, y: Int) = y % x == 0;
+val f = isFactorOf _; // retains no parameters
+val x = f(7, 20); // false
+println(x);
+
+val multipleOf3 = factorOf(3, _: Int);
+val y = multipleOf3(78); // true
+println(y);
+
+// Currying
+def isFactorOfB(x: Int)(y: Int) = y % x == 0;
+val isEven = isFactorOfB(2) _;
+val z = isEven(32); // true
+println(z);
+
+
+
+// By-Name Parameters
+def doubles(x: => Int) = {
+  println("Now doubling " + x);
+  x * 2;
+};
+
+def g(i: Int) = {
+  println(s"Hello from g($i)");
+  i;
+};
+
+println(doubles(g(8)));
+
+
+
+// Partial Functions
+val statusHandler: Int => String = {
+  case 200 => "Okay";
+  case 400 => "Your error";
+  case 500 => "Our error";
+};
