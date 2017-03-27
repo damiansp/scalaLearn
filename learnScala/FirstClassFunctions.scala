@@ -66,7 +66,7 @@ println(x);
 val multipleOf3 = factorOf(3, _: Int);
 val y = multipleOf3(78); // true
 println(y);
-
+nn
 // Currying
 def isFactorOfB(x: Int)(y: Int) = y % x == 0;
 val isEven = isFactorOfB(2) _;
@@ -96,3 +96,41 @@ val statusHandler: Int => String = {
   case 400 => "Your error";
   case 500 => "Our error";
 };
+
+
+
+// Higher-Order Functions
+val uuid = java.util.UUID.randomUUID.toString;
+val timeUUID = safeStringOp(uuid, {
+    s =>
+    val now = System.currentTimeMillis;
+    val timed = s.take(24) + now;
+    timed.toUpperCase;
+});
+
+def safeStringOp2(s:String)(f: String => String) = {
+  if (s != null) f(s) else s;
+};
+
+val timeUUID2 = safeStringOp2(uuid) {
+  s =>
+  val now = System.currentTimeMillis;
+  val timed = s.take(24) + now;
+  timed.toUpperCase;
+};
+
+def timer[A](f: => A): A = {
+  def now = System.currentTimeMillis;
+  val start = now;
+  val a = f;
+  val end = now;
+  println(s"Executed in ${end - start} ms")
+  a;
+};
+
+val veryRandomAmount = timer {
+  util.Random.setSeed(System.currentTimeMillis);
+  for (i <- 1 to 100000) util.Random.nextDouble;
+  util.Random.nextDouble;
+};
+
