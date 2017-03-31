@@ -111,3 +111,32 @@ println(List(2, 3, 5, 7, 11, 13) take 3)       // (2, 3, 5)
 println(List(2, 3, 5, 7, 11, 13) takeRight 3)  // (7, 11, 13)
 println(List(1, 2) zip List("a", "b"))         // ((1, "a"), (2, "b"))
 
+
+
+// Mapping Lists
+println(List(0, 1, 0) collect { case 0 => "ok" }) // ("ok", "ok")
+println(List("milk, tea") flatMap (_.split(','))) // ("milk", "tea")
+println(List("milk", "tea") map (_.toUpperCase))
+
+
+
+// Reducing Lists
+println(List(51, 59, 26).max)
+println(List(51, 59, 26).min)
+println(List(2, 3, 4, 5).product)
+println(List(2, 3, 4, 5).sum)
+println(List(23, 34, 45) contains 29)
+println(List(0, 4, 3) endsWith List(4, 3))
+println(List(24, 17, 32) exists (_ < 18))
+println(List(24, 17, 32) forall (_ < 18))
+println(List(0, 4, 3) startsWith List(0))
+
+println(List(4, 5, 6).fold(0)(_ + _)) // 15
+println(List(4, 5, 6).foldLeft(0)(_ + _))
+println(List(4, 5, 6).foldRight(0)(_ + _))
+println(List(4, 5, 6).reduce(_ + _))
+println(List(4, 5, 6).reduceLeft(_ + _))
+println(List(4, 5, 6).reduceRight(_ + _))
+println(List(4, 5, 6).scan(0)(_ + _))     // (0, 4, 9, 15)
+println(List(4, 5, 6).scanLeft(0)(_ + _)) // (0, 4, 9, 15)
+println(List(4, 5, 6).scanRight(0)(_ + _)) // (15, 11, 6, 0)
