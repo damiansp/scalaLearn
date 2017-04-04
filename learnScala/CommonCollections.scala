@@ -140,3 +140,61 @@ println(List(4, 5, 6).reduceRight(_ + _))
 println(List(4, 5, 6).scan(0)(_ + _))     // (0, 4, 9, 15)
 println(List(4, 5, 6).scanLeft(0)(_ + _)) // (0, 4, 9, 15)
 println(List(4, 5, 6).scanRight(0)(_ + _)) // (15, 11, 6, 0)
+
+
+
+// Converting Collections
+println(List(1, 1, 2, 3, 5, 8).mkString(", "))
+List(1, 1, 2, 3, 5).toBuffer // immutable to mutable
+println(Map("a" -> 1, "b" -> 2).toList) // ((a, 1), (b, 2))
+println(Set(1 -> true, 3 -> false).toMap)
+println(List(1, 1, 2, 3, 5).toSet)
+println(List(1, 1, 2, 3, 5).toString)
+
+
+
+// Pattern Matching with Collections
+val statuses = List(500, 404)
+val msg = statuses.head match {
+  case x if x < 500 => "otay"
+  case _            => "whoah, error der"
+}
+println(msg)
+
+val msg2 = statuses match {
+  case x if x contains(500) => "has error"
+  case _                    => "otay"
+}
+println(msg2)
+
+val msg3 = statuses match {
+  case List(404, 500) => "not found & error"
+  case List(500, 404) => "error & not found"
+  case List(200, 200) => "all's well"
+  case _              => "ruh?"
+}
+println(msg3)
+
+val msg4 = statuses match {
+  case List(500, x) => s"Error followed by $x"
+  case List(e, x)   => s"$e followed by $x"
+}
+println(msg4)
+
+val head = List('r', 'g', 'b') match {
+  case x :: xs => x
+  case Nil     => ' '
+}
+println(head)
+
+val code = ('h', 204, true) match {
+  case (_, _, false)  => 501
+  case ('c', _, true) => 302
+  case ('h', x, true) => x
+  case (c, x, true)   => {
+    println(s"Did not expect code $c")
+    x
+  }
+}
+println(code)
+
