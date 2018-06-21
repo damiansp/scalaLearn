@@ -1,6 +1,8 @@
 .DS_Store
-
 *~
+
 *.txt
 .ipynb_checkpoints
 target
+
+*.class
