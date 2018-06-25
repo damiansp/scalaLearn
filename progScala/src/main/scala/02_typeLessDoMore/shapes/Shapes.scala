@@ -15,3 +15,7 @@ case class Point(x: Double = 0.0, y: Double = 0.0) {
 
 case class Circle(center: Point, radius: Double) extends Shape;
 case class Rectangle(lowerLeft: Point, height: Double, width: Double) extends Shape;
+
+
+val p1 = new Point(x=3.3, y=4.4)
+val p2 = p1.copy(y=6.6)
