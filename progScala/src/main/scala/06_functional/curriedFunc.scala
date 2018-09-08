@@ -13,3 +13,9 @@ println(cat1("Hello ")("World!")) // same
 val inverse: PartialFunction[Double, Double] = {
 	case d if d != 0.0 => 1.0 / d
 }
+
+
+val f1: String => String => String = (s1: String) => (s2: String) => s1 + s2
+val f2: String  => (String => String) = (s1: String) => (s2: String) => s1 + s2
+println(f1("hello")("world")) // helloworld
+println(f2("hello")("world")) // helloworld
