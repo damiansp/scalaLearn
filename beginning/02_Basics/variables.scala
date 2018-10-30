@@ -5,5 +5,10 @@ object Variables {
     println(x * x)
     y = 11
     //y = 10.5 // error type mismatch
+
+    lazy val z = 1.0e21 * 1.0331
+
+
+    /* Numeric Types */
   }
 }
