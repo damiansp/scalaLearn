@@ -10,5 +10,11 @@ object Variables {
 
 
     /* Numeric Types */
+    val b: Byte = 30
+    val s: Short = b
+    val d: Double = s
+
+
+    /* Boolean Type */
   }
 }
