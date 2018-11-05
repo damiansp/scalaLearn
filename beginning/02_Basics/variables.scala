@@ -16,5 +16,21 @@ object Variables {
 
 
     /* Boolean Type */
+    val f = !false
+    println(f)
+
+
+    /* Char */
+    val c = 'X'
+
+
+    /* Unit type */
+    val empty = ()
+
+
+    /* Strings */
+    val hello = "Hello"
+    val title = "Scala"
+    println(s"I am learning ${title}")
   }
 }
