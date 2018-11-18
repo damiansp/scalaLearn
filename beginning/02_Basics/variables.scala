@@ -32,5 +32,40 @@ object Variables {
     val hello = "Hello"
     val title = "Scala"
     println(s"I am learning ${title}")
+
+    
+    /* Arrays */
+    var books = new Array[String](3)
+    var books2 = Array("Beginning Scala", "Beginning Java", "Beginning Clojure")
+    books2(2) = "Beginning C++"
+    books2.foreach(println)
+
+
+    /* Lists -- Arrays with immutable elements */
+    val empty2: List[Nothing] = List()
+    val booklist: List[String] = List("Beginning Scala", "Beginning Java", "Beginning C++")
+    val empty3 = Nil /* List "tail" */
+    val moreBooks = "Beginning Scala" :: ("Beginning Java" :: ("Beginning C++" :: Nil))
+    println(moreBooks.head)
+    println(moreBooks.tail)
+
+
+    /* While */
+    var a = 0
+    while (a < 4) {
+        println(s"Working on $a")
+        a += 1
+    }
+
+
+    /* For */
+    val texts = List("Beginning Scala", "Beginning Java", "Beginning C++", "Scala Step by Step", 
+                     "Scala in 24 Hours")
+    for (text <- texts) println(text)
+
+
+    /* Filters */
+    for (text <- texts if text.contains("Scala")) println(text)
+
   }
 }
