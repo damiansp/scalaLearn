@@ -67,5 +67,34 @@ object Variables {
     /* Filters */
     for (text <- texts if text.contains("Scala")) println(text)
 
+
+    /* Var binding */
+    for {
+        text <- texts
+        textVal = text.toUpperCase()
+    } println(textVal)
+
+
+    /* Yielding */
+    val scalaBooks = for {
+        text <- texts if text.contains("Scala")
+    } yield text 
+    
+
+    /* Exceptions */
+    //throw new Exception("some exception...")
+
+
+    /* try/finally */
+    /**
+    try {
+        throw new Exception("some exception")
+    } finally {
+        println("...but still print this")
+    }
+    */
+
+
+    /*  try/catch */
   }
 }
