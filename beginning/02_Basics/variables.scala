@@ -50,6 +50,33 @@ object Variables {
     println(moreBooks.tail)
 
 
+    /* Ranges */
+    println(1 to 5) // Range(1, 2, 3, 4, 5)
+    println(1 until 5) // Range(1, 2, 3, 4)
+    println(1 to 20 by 4) // Range(1, 5, 9, 13, 17)
+
+
+    /* Tuples */
+    val tuple = (1, false, "Scala")
+    val tup2 = "title" -> "Scaler"
+    println(tuple._3) // "Scala"
+
+
+    /* if */
+    val exp = true
+    if (exp) println("you know it")
+    if (exp) {
+        println("no you don't")
+        println("oh wait... yes you do")
+    }
+    val i: Int = if (exp) 1 else 3
+    val j: Int = if (!exp) 1 else {
+        val k = System.currentTimeMillis
+        (k % 100L).toInt
+    }
+    println(j)
+
+
     /* While */
     var a = 0
     while (a < 4) {
