@@ -123,5 +123,27 @@ object Variables {
 
 
     /*  try/catch */
-  }
+    try {
+        file.write(stuff)
+    } catch {
+        case e: java.io.IOException => println("IOException")
+        case n: NullPointerException => println("NullPointerException")
+    }
+
+    try { Integer.parseInt("dog") } catch { case _ => 0 }
+    try { Integer.parseInt(44) } catch { case _ => 0 }
+
+
+    /* match */
+    44 match {
+        case 44 => true
+        case _ => false
+    }
+
+    "David" match {
+        case "David" => 45
+        case "Elwood" => 77
+        case _ => 0
+    }
+  }    
 }
