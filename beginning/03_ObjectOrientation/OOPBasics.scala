@@ -98,6 +98,31 @@ object Variables {
 
     println(delayed(nano()))
     println(notDelayed(nano()))
+
+
+    class Vehicle(speed: Int) {
+      val mph: Int = speed
+      def race() = println("Racing")
+    }
+
+    /* Extending class */
+    class Car(speed: Int) extends Vehicle(speed) {
+      override val mph: Int = speed
+      override def race() = println("Racing Car")
+    }
+
+    class Bike(speed: Int) extends Vehicle(speed) {
+      override val mph: Int = speed
+      override def race() = println("Racing Bike")
+    }
+
+    val vehicle1 = new Car(200)
+    println(vehicle1.mph)
+    vehicle1.race
+
+    val vehicle2 = new Bike(47)
+    println(vehicle2.mph)
+    vehicle2.race
   }
 }
 
