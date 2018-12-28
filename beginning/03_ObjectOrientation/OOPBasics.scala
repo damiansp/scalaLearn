@@ -123,6 +123,55 @@ object Variables {
     val vehicle2 = new Bike(47)
     println(vehicle2.mph)
     vehicle2.race
+
+    /* Traits */
+    trait flying {
+      def fly() = println("flying")
+    }
+
+    trait floating {
+      def float() = println("gliding")
+    }
+
+    class Batmobile(speed: Int) extends Vehicle(speed) with flying with floating {
+      override val mph: Int = speed
+      override def race() = println("Racing Batmobile")
+      override def fly() = println("Flying Batmobile")
+      override def float() = println("Gliding Batmobile")
+    }
+
+    val vehicle3 = new Batmobile(300)
+    vehicle3.fly()
+
+    val vehicleList = List(vehicle1, vehicle2, vehicle3)
+    val fastestVehicle = vehicleList.maxBy(_.mph)
+    println("Fastest:", fastestVehicle)
+
+
+    /* Case Classes */
+    case class Stuff(name: String, age: Int)
+
+    val s = Stuff("David", 45)
+    println(s.toString)
+    println(s.name)
+
+    class Things(val name: String, val age: Int) {
+      override def toString = "Stuff(" + name + ", " + age + ")"
+      override def hashCode = name.hashCode + age
+      override def equals(other: AnyRef) = other match {
+        case t: Things => this.name == t.name && this.age == t.age
+        case _         => false
+      }
+    }
+
+    object Things {
+      def apply(name: String, age: Int) = new Things(name, age)
+      def unapply(t: Things) = Some((t.name, t.age))
+    }
+
+
+    /* Value Classes */
+    class SomeClass(val underlying: Int) extends AnyVal
   }
 }
 
