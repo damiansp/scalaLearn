@@ -171,7 +171,14 @@ object Variables {
 
 
     /* Value Classes */
-    class SomeClass(val underlying: Int) extends AnyVal
+    class SomeClass(val i: Int) extends AnyVal {
+      def twice() = 2*i
+    }
+
+    val v = new SomeClass(9)
+    println(v.twice)
+
+
   }
 }
 
