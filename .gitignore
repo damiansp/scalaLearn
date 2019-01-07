@@ -2,6 +2,7 @@
 *~
 
 .idea
+project
 
 *.txt
 .ipynb_checkpoints
