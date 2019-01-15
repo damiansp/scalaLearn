@@ -12,5 +12,23 @@ object Functional {
 		val mult = (x: Int, y: Int) => { x * y }
 		operation(add)
 		operation(mult)
+
+		def greeting() = (name: String) => { s"hello, $name" }
+		var greet = greeting()
+
+		greet("Reader")
+
+
+		/* Closure */
+		var y = 3
+		val multiplier = (x: Int) => x * y
+		println(multiplier(3)) // 9
+
+
+		/* Partially Applied */
+		println(add(1, 3)) // 4
+		val addOne = add(1, _: Int)
+		println(addOne(7)) // 8
+
 	}
 }
