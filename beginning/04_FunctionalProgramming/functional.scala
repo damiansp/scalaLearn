@@ -30,5 +30,25 @@ object Functional {
 		val addOne = add(1, _: Int)
 		println(addOne(7)) // 8
 
+
+		/* Tail Calls and Tail Optimization */
+		def factorial(n: Int): Int = {
+			if (n == 1) return 1
+			n * factorial(n - 1)
+		}
+
+		println(factorial(5))
+
+		// With Incorrect Tail Recursion
+		/**
+		@annotation.tailrec
+		def factorialTR(n: Int): Int = {
+			if (n == 1) return 1
+			n * factorialTR(n - 1)
+		}
+
+		println(factorialTR(5))
+		*/
+		
 	}
 }
