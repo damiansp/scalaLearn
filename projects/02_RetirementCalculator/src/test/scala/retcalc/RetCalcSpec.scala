@@ -15,7 +15,7 @@ class RetCalcSpec extends WordSpec with Matchers with TypeCheckedTripleEquals {
         currentExpenses=2000,
         initialCapital=10000)
       val expected = 541267.1990
-      actual should === expected
+      actual should ===(expected)
     }
   }
 }
