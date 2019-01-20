@@ -1,6 +1,3 @@
-import java.io._
-
-
 object Functional {
 	def main(args: Array[String]) {
 		val add = (x: Int, y: Int) => x + y
