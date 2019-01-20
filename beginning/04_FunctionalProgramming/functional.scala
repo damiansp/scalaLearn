@@ -1,3 +1,6 @@
+import java.io._
+
+
 object Functional {
 	def main(args: Array[String]) {
 		val add = (x: Int, y: Int) => x + y
@@ -40,7 +43,7 @@ object Functional {
 		println(factorial(5))
 
 		// With Incorrect Tail Recursion
-		/**
+		/*
 		@annotation.tailrec
 		def factorialTR(n: Int): Int = {
 			if (n == 1) return 1
@@ -49,6 +52,26 @@ object Functional {
 
 		println(factorialTR(5))
 		*/
-		
+
+		// Correct
+		@annotation.tailrec
+		def factorialTR(accumulator: Int, n: Int): Int = {
+			if (n == 1) return accumulator
+			factorialTR(n * accumulator, n - 1)
+		}
+
+		println(factorialTR(1, 5))
 	}
+
+	// Call by name - evaluate String only if String is to be logged
+	/*
+	def log(level: Level, msg: => String) = 
+		if (logger.level.intValue >= level.intValue) logger.log(level, msg)
+	
+
+	def allStrings(expr: => String): List[String] = expr match {
+		case null => Nil
+		case s => s :: allStrings(expr)
+	}
+	*/
 }
