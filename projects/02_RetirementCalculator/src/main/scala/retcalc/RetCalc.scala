@@ -9,4 +9,23 @@ object RetCalc {
     (0 until nMonths).foldLeft(initialCapital)(
       (accumulated, _) => accumulated*(1 + interestRate) + monthlySavings)
   }
+
+  def simulatePlan(
+      interestRate: Double, nMonthsSavings: Int,  nMonthsInRetirement: Int, netIncome: Int,
+      currentExpenses: Int, initialCapital: Double): (Double, Double) = {
+    val capitalAtRetirement = futureCapital(
+      interestRate=interestRate,
+      nMonths=nMonthsSavings,
+      netIncome=netIncome,
+      currentExpenses=currentExpenses,
+      initialCapital=initialCapital)
+    val capitalAfterDeath = futureCapital(
+      interestRate=interestRate,
+      nMonths=nMonthsInRetirement,
+      netIncome=0,
+      currentExpenses=currentExpenses,
+      initialCapital=capitalAtRetirement)
+    (capitalAtRetirement, capitalAfterDeath)
+  }
+
 }
