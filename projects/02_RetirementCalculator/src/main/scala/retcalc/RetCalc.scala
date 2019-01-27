@@ -28,4 +28,20 @@ object RetCalc {
     (capitalAtRetirement, capitalAfterDeath)
   }
 
+  def nMonthsSaving(
+      interestRate: Double, nMonthsInRetirement: Int, netIncome: Int, currentExpenses: Int,
+      initialCapital: Double): Int = {
+    def loop(months: Int): Int = {
+      val (capitalAtRetirement, capitalAfterDeath) = simulatePlan(
+        interestRate = interestRate,
+        nMonthsSavings = months,
+        nMonthsInRetirement = nMonthsInRetirement,
+        netIncome = netIncome,
+        currentExpenses = currentExpenses,
+        initialCapital = initialCapital
+      )
+      if (capitalAfterDeath > 0.0) months else loop(months + 1)
+    }
+    loop(0)
+  }
 }
