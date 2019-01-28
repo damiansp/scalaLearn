@@ -51,5 +51,46 @@ object Functional {
     val x = 1
     val rest = List(2, 3, 4)
     println(x :: rest)
+
+
+    def sumOdd(in: List[Int]): Int = in match {
+      case Nil                     => 0
+      case x :: rest if x % 2 == 1 => x + sumOdd(rest)
+      case _ :: rest               => sumOdd(rest)
+    }
+
+    println(sumOdd(List(3, 2, 5, 4, 7))) // 15
+
+
+    // Merge repeated items in List to single occurrence
+    def noPairs[T](in: List[T]): List[T] = in match {
+      case Nil                      => Nil
+      case a :: b :: rest if a == b => noPairs(a :: rest)
+      case a :: rest                => a :: noPairs(rest)
+    }
+
+    println(noPairs(List(1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5)))
+
+
+    def ignore(in: List[String]): List[String] = in match {
+      case Nil                   => Nil
+      case _ :: "ignore" :: rest => ignore(rest)
+      case x :: rest             => x :: ignore(rest)
+    }
+
+    println(ignore(List("a", "word", "ignore", "or", "ignore", "ignore", "two")))
+
+
+    def getStrings(in: List[Any]): List[String] = in match {
+      case Nil                 => Nil
+      case (s: String) :: rest => s :: getStrings(rest)
+      case _ :: rest           => getStrings(rest)
+    }
+
+    println(getStrings(List(1, 3, "first", true, "second", 2.2)))
+
+
+    case class Person(name: String, age: Int, valid: Boolean)
+    val p = Person("David", 45, true)
   }
 }
