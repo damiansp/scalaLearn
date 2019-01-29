@@ -91,6 +91,42 @@ object Functional {
 
 
     case class Person(name: String, age: Int, valid: Boolean)
+
     val p = Person("David", 45, true)
+    val m = new Person("Martin", 44, true)
+    println(p.name + ' ' + p.age +  ' ' + p.valid)
+    // p.name = "Fred" Error: reassignment to val
+
+    case class MPerson(var name: String, var age: Int) // properteies now mutable
+    val mp = MPerson("Jorge", 24)
+
+    def older(p: Person): Option[String] = p match {
+      case Person(name, age, true) if age > 35 => Some(name)
+      case _                                   => None      
+    }
+
+    println(older(p)) // Some(David)
+    println(older(Person("Jorge", 24, true))) // None
+
+
+    // Nested Pattern Matching in Case Classes
+    /*
+    case class MarriedPerson(
+      override val name: String, 
+      override val age: Int,
+      override val valid: Boolean,
+      spouse: Person) extends Person(name, age, valid)
+    
+    val sally = MarriedPerson("Sally", 24, true, p)
+
+    def mOlder(p: Person): Option[String] = p match {
+      case Person(name, age, true) if age > 35                         => Some(name)
+      case MarriedPerson(name, _, _, Person(_, age, true)) if age > 35 => Some(name)
+      case _                                                           => None
+    }
+
+    println(mOlder(p))
+    mOlder(sally)
+    */
   }
 }
