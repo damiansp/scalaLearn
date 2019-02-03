@@ -128,5 +128,24 @@ object Functional {
     println(mOlder(p))
     mOlder(sally)
     */
+
+    /*
+    def handleRequest(req: List[String])(exceptions: PartialFunction(List[String], String)): = {
+      if (exceptions.isDefinedAt(req)) exceptions(req)
+      else  "Handling URL " + req + " in the default way"
+    }
+
+    handleRequest("foo" :: Nil) {
+      case "api" :: call :: params => doApi(call, params)
+    }
+
+    def doApi(call: String, params: List[String]): String = "Doing API call " + call
+
+    val f1: PartialFunction[List[Sting]], String] = case "stuff" :: Nil => "Got some stuff"
+    val f2: PartialFunction[List[String], String] = case "other" :: params => "Other: " + params
+    val f3 = f1 orElse f2
+    handleRequest("a" :: "b" :: Nil)(f3)
+    */
+
   }
 }
