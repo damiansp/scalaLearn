@@ -147,5 +147,78 @@ object Functional {
     handleRequest("a" :: "b" :: Nil)(f3)
     */
 
+
+    // Object orientation vs Pattern matching
+    trait OShape {
+      def area: Double
+    }
+
+    class OCircle(radius: Double) extends OShape {
+      def area = radius * radius * Math.Pi
+      def getRadius = radius
+    }
+
+    class OSquare(length: Double) extends OShape {
+      def area = length * length      
+      def getLength = length
+    }
+
+    class ORectangle(h: Double, w: Double) extends OShape {
+      def area = h * w
+      def getHeigth = h
+      def getWidth = w
+    }
+
+    train Shape
+    case class Circle(radius: Double) extends Shape
+    case class Square(length: Double) extends Shape
+    case class Rectangle(h: Doubel, w: Double) extends Shape
+
+    object Shape {
+      def area(shape: Shape): Double = shape match {
+        case Circle(r)       => r * r * Math.Pi
+        case Square(len)     => len * len
+        case Rectangle(h, w) => h * w
+      }
+
+      def perimeter(shape: Shape) = shape match {
+        case Circle(r)       => 2 * Math.Pi * r
+        case Square(len)     => 4 * len
+        case Rectangle(h, w) => 2*h + 2*w
+      }
+    }
+
+
+    
+    trait OCarVisitor {
+      def visit(wheel: OWheel): Unit
+      def visit(engine: OEngine): Unit
+      def visit(body: OBody): Unit
+      def visit(car: OCar): Unit
+    }
+
+    trait OCarElement {
+      def accept(visitor: OCarVisitor): Unit
+    }
+
+    class OWheel(val name: String) extends OCarElement {
+      def accept(visitor: OCarVisitor) = visitor.visit(this)
+    }
+
+    class OEngine extends OCarElement {
+      def accept(visitor: OCarVisitor) = visitor.visit(this)
+    }
+
+    class OBody extends OCarElement {
+      def accept(visitor: OCarVisitor) = visitor.visit(this)
+    }
+
+    class OCar extends OCarElement {
+      val elements = List(
+        new OEngine, new OBody, new OWheel("FR"), new OWheel("FL"), new OWheel("RR"), new OWheel("RL"))
+      def accept(visitor: OCarVisitor) = (this::element).foreach(_.accept(visitor))
+    }
+
+      
   }
 }
