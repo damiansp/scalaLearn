@@ -35,7 +35,7 @@ class RetCalcSpec extends WordSpec with Matchers with TypeCheckedTripleEquals {
     "calculate the capital at retirement and the capital after death" in {
       val (capitalAtRetirement, capitalAfterDeath) = RetCalc.simulatePlan(
         interestRate=0.04 / 12,
-        nMonthsSavings=uyua25 * 12,
+        nMonthsSavings=25 * 12,
         nMonthsInRetirement=40 * 12,
         netIncome=3000,
         currentExpenses=2000,
@@ -77,6 +77,22 @@ class RetCalcSpec extends WordSpec with Matchers with TypeCheckedTripleEquals {
         currentExpenses=2000,
         initialCapital=10000)
       actual should === (Int.MaxValue)
+    }
+  }
+
+  "VariableReturns.fromUntil" should {
+    "keep only a window of the returns" in {
+      val variableReturns = VariableReturns(Vector.tabulate(12) { i =>
+        val d = (i + 1).toDouble
+        VariableReturn(f"2017.$d%02.0f", d)
+      })
+      variableReturns.fromUntil("2017.07", "2017.09").returns should === (
+        Vector(VariableReturn("2017.07", 7.0), VariableReturn("2017.08", 8.0)))
+      variableReturns.fromUntil("2017.10", "2018.01").returns should === (
+        Vector(
+          VariableReturn("2017.10", 10),
+          VariableReturn("2017.11", 11.0),
+          VariableReturn("2017.12", 12.0)))
     }
   }
 }
