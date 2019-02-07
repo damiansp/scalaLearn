@@ -1,4 +1,4 @@
-object Functional {
+object PattternMatching {
   def main(args: Array[String]) {
   	def printNum(int: Int) {
   		int match {
