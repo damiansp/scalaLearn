@@ -219,6 +219,19 @@ object Functional {
       def accept(visitor: OCarVisitor) = (this::element).foreach(_.accept(visitor))
     }
 
-      
+
+    // Alternately...!
+    trait CarElement
+    case class Wheel(name: String) extends CarElement
+    case class Engine() extends CarElement
+    case class Body() extends CarElement
+    case class Car(elements: List[CarElement]) extends CarElement
+
+    def doSomething(in: CarElement): Unit = in match {
+      case Wheel(name) =>
+      case Engine()    =>
+      case Body()      =>
+      case Car(e)      => e.foreach(doSomething)
+    }
   }
 }
