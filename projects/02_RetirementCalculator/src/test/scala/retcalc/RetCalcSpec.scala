@@ -10,23 +10,23 @@ class RetCalcSpec extends WordSpec with Matchers with TypeCheckedTripleEquals {
   "RetCalc.futureCapital" should {
     "calculate the amount of savings I will have in n months" in {
       val actual = RetCalc.futureCapital(
-        interestRate=0.04 / 12,
+        FixedReturns(0.04),
         nMonths=25 * 12,
         netIncome=3000,
         currentExpenses=2000,
-        initialCapital=10000)
+        initialCapital=10000).right.value
       val expected = 541267.1990
       actual should === (expected)
     }
 
     "calculate how mach savings will be left after having taken a pension for n months" in {
       val actual = RetCalc.futureCapital(
-        interestRate=0.04 / 12,
+        FixedReturns(0.04),
         nMonths=40 * 12,
         netIncome=0,
         currentExpenses=2000,
-        initialCapital=541267.1990)
-      val expected = 309867.53176
+        initialCapital=541267.198962).right.value
+      val expected = 309867.5316
       actual should === (expected)
     }
   }
@@ -93,6 +93,32 @@ class RetCalcSpec extends WordSpec with Matchers with TypeCheckedTripleEquals {
           VariableReturn("2017.10", 10),
           VariableReturn("2017.11", 11.0),
           VariableReturn("2017.12", 12.0)))
+    }
+  }
+}
+
+
+class ReturnsSpec extends WordSpec with Matchers with TypeCheckedTripleEquals {
+  implicit val doubleEquality: Equality[Double] = TolerantNumerics.tolerantDoubleEquality(
+    0.0001)
+
+  "Returns.monthlyRate" should {
+    "return a fixed rate for a fixed return" in {
+      Returns.monthlyRate(FixedReturns(0.04), 0) should === (0.04 / 12)
+      Returns.monthlyRate(FixedReturns(0.04), 10) should === (0.04 / 12)
+    }
+    val variableReturns = VariableReturns(Vector(
+      VariableReturn("2001.01", 0.1), VariableReturn("2001.02", 0.2)))
+
+    "return the nth rate for VariableReturn" in {
+      Returns.monthlyRate(variableReturns, 0) should === (0.01)
+      Returns.monthlyRate(variableReturns, 1) should === (0.02)
+    }
+
+    "roll over from the first rate if n > length" in {
+      Returns.monthlyRate(variableReturns, 2) should === (0.01)
+      Returns.monthlyRate(variableReturns, 3) should === (0.02)
+      Returns.monthlyRate(variableReturns, 4) should === (0.01)
     }
   }
 }
