@@ -4,7 +4,7 @@ object ScalaCollections {
 	def main(args: Array[String]) {
 
 		// Seq is an ordered List
-		val x = Seq(1, 2, 3)
+		val sq = Seq(1, 2, 3)
 
 
 		// Sets
@@ -32,5 +32,17 @@ object ScalaCollections {
 
 
     // Buffer
+    var buffer = mutable.Buffer(1, 2, 3)
+    var aBuff = mutable.Seq(1, 2, 3) // ArrayBuffer
+    var mList = mutable.LinearSeq(1, 2, 3) // MutableList
+    var iSeq = mutable.IndexedSeq(1, 2, 3) // ArrayBuffer
+    var mSortSet = mutable.SortedSet(1, 2, 3) // TreeSet
+    var mbSet = mutable.BitSet(1, 2, 3) // BitSet
+    var mmap = mutable.Map(1 -> "a", 2 -> "b")
+
+
+
+    /* Using Immutable Collection Classes */
+    val x = List(1, 2, 3, 4)
 	}
 }
