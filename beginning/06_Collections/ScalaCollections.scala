@@ -1,3 +1,5 @@
+import scala.collection.mutable
+
 object ScalaCollections {
 	def main(args: Array[String]) {
 
@@ -6,16 +8,29 @@ object ScalaCollections {
 
 
 		// Sets
-		val s = Set(1, 2, 3)
+		val s = Set(1, 2, 3) // Immutable by default
 
 
 		// Map
-		val map = Map(1 -> "a", 2 -> "b", 3 -> "c")
+		val map = Map(1 -> "a", 2 -> "b", 3 -> "c") // Immutable by default
 
 
 		// Immutable Seq
 		val imIndSeq = scala.collection.immutable.IndexedSeq(1, 2, 3) // = Vector
 		val imLinSeq = scala.collection.immutable.LinearSeq(1, 2, 3)
 		val imSeq = scala.collection.immutable.Seq(1, 2, 3)
+
+
+    // Immutable Set
+    val set = collection.immutable.Set(1, 2, 3)
+    val sset = collection.immutable.SortedSet(1, 2, 3)
+    val bset = collection.immutable.BitSet(1, 2, 3)
+    val smap = collection.immutable.SortedMap(1 -> "a", 2 -> "b")
+
+    // Since the defaults are immutable to use a mutable
+    var mset = mutable.Set(1, 9, 5)
+
+
+    // Buffer
 	}
 }
