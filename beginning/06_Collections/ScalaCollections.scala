@@ -68,5 +68,23 @@ object ScalaCollections {
         vec6 = vec4.filter(_ > 2)
         println(vec6) // 3, 4, 5
         val vec6 = vec ++ vec2
+
+        val myList = List(1, 2, 3)
+        println(99 :: myList) // 99, 1, 2, 3
+        val otherList = List(97, 98, 99)
+        println(myList ::: otherList)
+
+        val odds = List(1, 2, 3, 4, 5).filter(x => x % 2 == 1)
+        println(odds) // 1, 3, 5
+
+        def isOdd(x: Int) = x % 2 == 1
+
+        val moreOdds = List(1, 2, 3, 4, 5, 6, 7).filter(isOdd)
+        println(moreOdds)
+
+        println("99 Red Balloons".toList.filter(Character.isDigit)) // 9, 9
+        println("Elwood eats mice".takeWhile(c => c != ' ')) // E, l, w, o, o, d
+        println(List("A, Cat").map(s => s.toLowerCase)) // a, cat
+        
     }
 }
