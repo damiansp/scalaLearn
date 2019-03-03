@@ -85,6 +85,21 @@ object ScalaCollections {
         println("99 Red Balloons".toList.filter(Character.isDigit)) // 9, 9
         println("Elwood eats mice".takeWhile(c => c != ' ')) // E, l, w, o, o, d
         println(List("A, Cat").map(s => s.toLowerCase)) // a, cat
-        
+        println(List("A", "Cat").map(_.toLowerCase))
+        println(List("A", "Cat").map(_.length)) // 1, 3
+
+
+        trait Person { def first: String }
+
+        val p1 = new Person { def first = "David" }
+        val p2 = new Person { def first = "Elwood" }
+        val p3 = new Person { def first = "Frankie" }
+        println(List(p1, p2, p3).map(_.first))
+
+        println(List(8, 6, 22, 2).reduceLeft(_ max _))
+        println(
+            List("moose", "cow", "alligator", "cat")
+            .reduceLeft((a, b) => if (a.length > b.length) a else b))
+        println((1 to 10).foldLeft(0)(_ + _))
     }
 }
