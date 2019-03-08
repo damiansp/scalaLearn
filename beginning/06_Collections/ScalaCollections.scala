@@ -101,5 +101,75 @@ object ScalaCollections {
             List("moose", "cow", "alligator", "cat")
             .reduceLeft((a, b) => if (a.length > b.length) a else b))
         println((1 to 10).foldLeft(0)(_ + _))
+        println((1 to 10).foldLeft(1)(_ * _))
+
+        val n = (1 to 3).toList
+        println(n.map(i => n.map(j => i * j))) // List(List(1, 2, 3), List(2, 4, 6), List(3, 6, 9))
+        println(n.flatMap(i => n.map(j => i * j))) // List(1, 2, 3, 2, 4, 6, 3, 6, 9)
+
+        def isEven(n: Int) = !isOdd(n)
+        val ten = (1 to 10).toList
+        ten.filter(isEven).flatMap(i => ten.filter(isOdd).map(j => i * j))
+        for {
+            i <- 10 if isEven(i)
+            j <- ten if isOdd(j)
+        } yeild i * j
+
+        
+        /* Ranges */
+        println(1 to 10 by 2)
+        println('a' to 'f')
+
+
+        /* Stream - Lazily evaluated Lists */
+        val stream = 1 #:: 2 #:: 3 #:: Stream.empty
+        val longStream = (1 to 100000000).toStream
+        println(longStream.head) // 1
+        println(longStream.tail) // Stream(2, ?)
+
+
+        /* Tuples */
+        def sumSq(x: List[Double]): (Int, Double, Double) = {
+            x.foldLeft((0, 0d, 0d))((t, v) => (t._1 + 1, t._2 + v, t._3 + v*v))
+        }
+
+        def sumSq2(x: List[Double]): (Int, Double, Double) = {
+            x.foldLeft((0, 0d, 0d)) {
+                case ((cnt, sum, sq), v) => (cnt + 1, sum + v, sq + v*v)
+            }
+        }
+        
+        Tuple2(1, 2) == Pair(1, 2)
+        Pair(1, 2) == (1, 2)
+        (1, 2) == 1 -> 2
+
+
+        /* Map[K, V] */
+        var p = Map(1 -> "David", 9 -> "Elwood")
+        p += 8 -> "Archer"
+        println(p(9)) // Elwood
+        println(p.get(88)) // None
+        prinltn(p.get(88, "Nobody")) // Nobody
+        println(p.get(9)) // Some(Elwood)
+        p -= 9 // removes Elwood
+        println(p.contains(1)) // true
+        println(p.keys.reduceLeft(_ max _)) // 8
+        println(p.values.reduceLeft((a, b) => if (a > b) a else b)) // David
+        println(p.values.exists(_.contains("z"))) // false
+        p ++= List(5 -> "Cat", 6 -> "Dog")
+        p --= List(8, 6)
+
+        def removeInvalid(in: Map[Int, Person]) = in.filter(kv => kv._2.valid)
+
+        val immutableMap = Map(1 -> "a", 2 -> "b", 3 -> "c")
+        val newMap = immutableMap - 1 + (4 -> "d")
+        println(newMap)
+
+        val mapBuff = immutableMap.toBuffer
+        mapBuff += (5 -> "e")
+        val newMap = mapBuff.toMap
+
+
+        /* Mutable Queue */
     }
 }
