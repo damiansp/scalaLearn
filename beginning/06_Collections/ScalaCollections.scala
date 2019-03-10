@@ -65,8 +65,8 @@ object ScalaCollections {
         val vec4 = Vector(1, 2, 3, 4, 5)
         val vec5 = vec4.take(2)
         println(vec5) // 1, 2
-        vec6 = vec4.filter(_ > 2)
-        println(vec6) // 3, 4, 5
+        val vec7 = vec4.filter(_ > 2)
+        println(vec7) // 3, 4, 5
         val vec6 = vec ++ vec2
 
         val myList = List(1, 2, 3)
@@ -111,9 +111,9 @@ object ScalaCollections {
         val ten = (1 to 10).toList
         ten.filter(isEven).flatMap(i => ten.filter(isOdd).map(j => i * j))
         for {
-            i <- 10 if isEven(i)
+            i <- ten if isEven(i)
             j <- ten if isOdd(j)
-        } yeild i * j
+        } yield i * j
 
         
         /* Ranges */
@@ -149,7 +149,7 @@ object ScalaCollections {
         p += 8 -> "Archer"
         println(p(9)) // Elwood
         println(p.get(88)) // None
-        prinltn(p.get(88, "Nobody")) // Nobody
+        println(p.getOrElse(88, "Nobody")) // Nobody
         println(p.get(9)) // Some(Elwood)
         p -= 9 // removes Elwood
         println(p.contains(1)) // true
@@ -159,7 +159,7 @@ object ScalaCollections {
         p ++= List(5 -> "Cat", 6 -> "Dog")
         p --= List(8, 6)
 
-        def removeInvalid(in: Map[Int, Person]) = in.filter(kv => kv._2.valid)
+        //def removeInvalid(in: Map[Int, Person]) = in.filter(kv => kv._2.valid)
 
         val immutableMap = Map(1 -> "a", 2 -> "b", 3 -> "c")
         val newMap = immutableMap - 1 + (4 -> "d")
@@ -167,9 +167,27 @@ object ScalaCollections {
 
         val mapBuff = immutableMap.toBuffer
         mapBuff += (5 -> "e")
-        val newMap = mapBuff.toMap
+        val newerMap = mapBuff.toMap
 
 
         /* Mutable Queue */
+        var intQ = mutable.Queue[Int]()
+        intQ += 1
+        println(intQ) // 1
+        intQ += (2, 3) 
+        println(intQ) // 1, 2, 3
+        intQ.enqueue(4)
+        println(intQ) // 1, 2, 3, 4
+        println(intQ.dequeue) // 1
+        println(intQ) // 2, 3, 4
+
+
+        /* Mutable Stack */
+        var intStack = mutable.Stack[Int](1, 2, 3)
+        intStack.push(4) 
+        println(intStack) // 4, 1, 2, 3
+        intStack.push(5, 6, 7)
+        println(intStack) // 7, 6, 5, 4, 1, 2, 3
+        println(intStack.pop) // 7
     }
 }
