@@ -44,13 +44,66 @@ object Traits {
     */
 
     trait Vehicle {
-      def drive = println("Driving")
+      def drive = "Driving"
       def race // abstract
     }
 
 
     class Car extends Vehicle {
       def race = "Racing the car"
+    }
+
+
+    class Boat extends Vehicle {
+      override def drive = "Float"
+      def race = "Racing the boat"
+    }
+
+
+    trait CarTrait {
+      var door: Int
+      val wheels: Int = 4
+      var seat = 4
+    }
+
+    
+    class Car extends CarTrait {
+      var door = 4 // override not needed for var
+      override val wheels = 3  // val does
+      seat = 5
+    }
+
+
+    abstract class LivingThing
+    abstract class Plant extends LivingThing
+    abstract class Fungus extends LivingThing
+    abstract class Animal extends LivingThing
+
+
+    trait HasLegs extends Animal {
+      def walk() = println("Walking")
+    }
+
+
+    trait HasWings extends Animal {
+      def flap() = println("Flap Flap")
+    }
+
+
+    trait Flies {
+      this: HasWings => def fly() = println("I'm flying")
+    }
+
+
+    abstract class Bird extends Animal with HasWings with HasLegs 
+
+
+    class Robin extends Bird with Flies
+    class Ostrich extends Bird
+
+
+    abstract class Mammal extends Animal {
+      def bodyTemperature: Double
     }
   }
 }
