@@ -105,5 +105,68 @@ object Traits {
     abstract class Mammal extends Animal {
       def bodyTemperature: Double
     }
+
+
+    trait KnowsName extends Animal {
+      def name: String
+    }
+
+
+    class Dog(val name: String) extends Mammal with HasLegs with KnowsName {
+      def bodyTemperature: Double = 99.3
+    }
+
+
+    trait IgnoresName {
+      this: KnowsName => def ignoreName(when: String): Option[String] = 
+        if (ignoreName(when)) None else Some(name)
+    }
+
+
+    class Cat(val name: String) extends Mammal with HasLegs with KnowsName with IgnoresName {
+      def ignoreName(when: String) = when match {
+        case "Dinner" => false
+        case _ => true
+      }
+
+      def bodyTemperature: Double = 99.5
+    }
+
+
+    trait Athlete extends Animal
+
+
+    trait Runner {
+      this: Athlete with HasLegs => def run() { println("Running") }
+    }
+
+
+    class Person(val name: String) extends Mammal with HasLegs with KnowsName {
+      def bodyTemperature: Double = 98.6
+    }
+
+
+    trait Biker extends Person {
+      this: Athlete => def ride() { println("Riding a bike") }
+    }
+
+
+    trait Gender
+    trait Male extends Gender
+    trait Female extends Gender
+
+    // val bikerDog = new Dog("biker") with Athlete with Biker /* a biker nmust be a person */
+    val archer = new Dog("Archer") with Athlete with Runner with Male
+    val dpp = new Person("David") with Athlete with Biker with Male
+    val john = new Person("John") with Athlete with Runner with Male
+    val annette = new Person("Annette") with Athlete with Runner with Female
+
+
+    def goBiking(b: Biker) = println(b.name + " is biking")
+    goBiking(dpp)
+    //goBiking(annette) /* annette is not a biker */
+
+
+    def charityRun(r: Person with Runner) = r.run()
   }
 }
