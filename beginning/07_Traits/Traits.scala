@@ -168,5 +168,16 @@ object Traits {
 
 
     def charityRun(r: Person with Runner) = r.run()
+
+    charityRun(annette)
+    // charityRun(archer) /* must be Person with Runner */
+
+    def womensRun(r: Runner with Female) = r.run()
+    womensRun(annette)
+
+    val madeline = new Cat("Madeline") with Athlete with Runner with Female
+    womensRun(madeline)
+
+    
   }
 }
