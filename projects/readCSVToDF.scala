@@ -3,6 +3,6 @@ val irisDataFrame = spark.read
   .format("com.databricks.spark.csv")
   .option("header", true)
   .option("inferSchema", true)
-  .load("iris.csv")
+  .load("data/iris.csv")
 
 irisDataFrame.show
