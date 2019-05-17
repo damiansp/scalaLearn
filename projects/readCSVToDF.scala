@@ -1,8 +1,13 @@
 // For REPL
-val irisDataFrame = spark.read
+val iris = spark.read
   .format("com.databricks.spark.csv")
   .option("header", true)
   .option("inferSchema", true)
   .load("data/iris.csv")
 
-irisDataFrame.show
+iris.show
+val irisDescribe = iris.describe("sepl", "sepw", "petl", "petw", "species")
+
+irisDescribe.show
+
+ 
