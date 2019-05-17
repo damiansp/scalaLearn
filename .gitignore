@@ -5,6 +5,7 @@
 project
 
 *.txt
+*.csv
 .ipynb_checkpoints
 target
 
