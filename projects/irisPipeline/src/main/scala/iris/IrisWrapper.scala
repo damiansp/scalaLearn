@@ -10,7 +10,7 @@ trait IrisWrapper {
     .master("local")
     .appName("iris-pipeline")
     .getOrCreate()
-  val dataSetPath = "/Users/dsatterthwaite/Learning/scalaLearn/projects/irisPipeline/iris.csv"
+  val dataSetPath = "/Users/dsatterthwaite/Learning/scalaLearn/projects/irisPipeline"
   val irisFeaturesCategoryOrSpeciesIndexedLabel = (
     "iris-features-column", "iris-species-column", "label")
 
