@@ -1,4 +1,13 @@
 # Programming Scala
 
-Coding along with the book by this name (D. Wampler, 2021 [3rd Ed.]).
-The book's repo is <a href="https://github.com/deanwampler/programming-scala-book-code-examples">here</a>.
+Learning Scala 3 from:
+- Dean Wampler (2021) _Programming Scala_ (3rd Ed.; O'Reilly Media)
+
+Book repo is <a href="https://github.com/deanwampler/programming-scala-book-code-examples">here</a>.
+
+### Create a new project (sbt 1.4+):
+`sbt new scala/scala3.g8`
+
+### To run script files
+`sbt console`
+`scala> :load src/script/scala/progscala3/restofpath/MyFile.scala`
