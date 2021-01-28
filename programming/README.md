@@ -10,4 +10,6 @@ Book repo is <a href="https://github.com/deanwampler/programming-scala-book-code
 
 ### To run script files
 `sbt console`
+
+...or if the script uses libraries:
 `scala> :load src/script/scala/progscala3/restofpath/MyFile.scala`
