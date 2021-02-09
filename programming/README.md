@@ -13,3 +13,9 @@ Book repo is <a href="https://github.com/deanwampler/programming-scala-book-code
 
 ...or if the script uses libraries:
 `scala> :load src/script/scala/progscala3/restofpath/MyFile.scala`
+
+
+### For typical files:
+`> scalac src/main/scala/my/path/file.scala`
+then
+`scala> runMain my/path.file [args]`
