@@ -1,4 +1,4 @@
-package progscala3.inotroscala
+package progscala3.introscala
 
 object UpperMain2:
   def main(params: Array[String]): Unit = 
