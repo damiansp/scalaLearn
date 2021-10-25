@@ -13,3 +13,17 @@
   val face = 5
   lazy val lazyFace = 5
 
+  var data = {
+    println("Array initialized")
+    Array("MSFT", "GOOG", "TM")
+  }
+
+  println("----------------------")
+  data.foreach(println)
+
+  val moreData = Array("MSFT", "GOOG", "TM")
+  data(0) = "AAPL"
+  data(2) = "TSLA"
+  moreData.foreach(println)
+  
+
