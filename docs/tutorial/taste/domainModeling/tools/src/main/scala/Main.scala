@@ -2,7 +2,7 @@ import java.time.*
 import scala.math.*
 
 
-@main def hello: Unit = 
+@main def main: Unit = 
   // Classes
   class Person(var name: String, var vocation: String)
   class Book(var title: String, var author: String, var year: Int)
@@ -90,3 +90,63 @@ import scala.math.*
 
 
   // Other uses
+  class Dude:
+    var name = ""
+    var age = 0
+    override def toString = s"$name is $age years old"
+
+  object Dude:
+    def apply(name: String): Dude =
+      var d = new Dude
+      d.name = name
+      d
+    
+    def apply(name: String, age: Int): Dude =
+      var d = new Dude
+      d.name = name
+      d.age = age
+      d
+  
+  end Dude // optional
+
+  val joey = Dude("Joey")
+  val chanler = Dude("Chandler", 37)
+
+
+  // Traits
+  trait Employee:
+    def id: Int
+    def name: String
+    def surname: String
+
+  trait HasLegs:
+    def nLegs: Int
+    def walk(): Unit
+    def stop() = println("Stopped walking")
+
+  trait HasTail:
+    def tailColor: String
+    def wagTail() = println("Waggin' that tail")
+    def stopTail() = println("Tail stopped")
+
+  class IrishSetter(name: String) extends HasLegs, HasTail:
+    val nLegs = 4
+    val tailColor = "Red"
+    def walk() = println("Walking with a spring in my step")
+    override def toString = s"$name is a dog"
+
+  val red = IrishSetter("Big Red")
+
+
+  // Abstract Classes
+  abstract class Pet(name: String):
+    def greeting: String
+    def age: Int
+    override def toString = s"$greeting, I'm $age years old"
+
+  class Dog(name: String, var age: Int) extends Pet(name):
+    val greeting = "Woof"
+
+  val fido = Dog("Fido", 3)
+  println(fido)
+  
